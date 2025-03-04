@@ -1,22 +1,16 @@
 let dinner = ['Pork cutlets with rice', 'Beef Stroganov', 'Carry', 'Lasagna', 'Pasta', 'Ratatuille'];
 
-function chooseDish (dish) {
-    if (dish.includes("Pork")) {
-        console.log((dinner.indexOf(dish) + 1) + " day I eat " + dish.replace("Pork", "Chicken") + ".");
-    } else if (dish.includes("Beef")) {
-        console.log((dinner.indexOf(dish) + 1) + " day I eat " + dish.replace("Beef", "Chicken") + ".");
-    } else {
-        console.log((dinner.indexOf(dish) + 1) + " day I eat " + dish + ".");
-    }
-}
+dinner.forEach((dish) => {
+        if (dish.includes("Pork")) {
+            console.log((dinner.indexOf(dish) + 1) + " day I eat " + dish.replace("Pork", "Chicken") + ".");
+        } else if (dish.includes("Beef")) {
+            console.log((dinner.indexOf(dish) + 1) + " day I eat " + dish.replace("Beef", "Chicken") + ".");
+        } else {
+            console.log((dinner.indexOf(dish) + 1) + " day I eat " + dish + ".");
+        }
+    })
 
-dinner.forEach(chooseDish)
-
-let veganDinner = dinner.map(makeVegan)
-
-console.log(veganDinner);
-
-function makeVegan (dish) {
+let veganDinner = dinner.map((dish) => {
     if (dish.includes("Pork")) {
         return dish.replace("Pork", "Soy meat");
     } else if (dish.includes("Beef")) {
@@ -24,24 +18,32 @@ function makeVegan (dish) {
     } else {
         return dish;
     }
-}
+})
 
-let dishesWithC = dinner.filter(checkIncludeC)
+console.log(veganDinner);
 
-console.log(dishesWithC);
-
-function checkIncludeC (dish) {
+let dishesWithC = dinner.filter((dish) => {
     if (dish.toLowerCase().includes("c")) {
         return dish;
     }
-}
+})
+
+console.log(dishesWithC);
 
 let prices = [12000, 6000, 9000, 3000];
 
-let totalPrice = prices.reduce(countExpenses);
+let totalPrice = prices.reduce((total, price) => {
+    return total + price;
+});
 
 console.log(totalPrice);
 
-function countExpenses (total, price) {
-    return total + price;
-}
+let newArr = prices.concat(dinner);
+newArr.sort((a, b) => {
+    if (typeof(a, b) === 'string') {
+        return a.length - b.length;
+    } else if (typeof(a, b) === 'number') {
+        return a - b;
+    }
+});
+console.log(newArr);
